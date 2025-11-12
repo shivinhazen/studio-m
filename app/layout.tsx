@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | Studio M — Soluções Visuais",
   },
   description:
-    "Estúdio boutique de design comandado por Lucas Leão, especializado em identidades visuais, experiências digitais e impressos de alta fidelidade.",
+    "Studio M é um estúdio boutique de design que cria identidades visuais, experiências digitais e materiais impressos de alta fidelidade com direção estratégica.",
   metadataBase: new URL("https://studiom.design"),
 };
 
