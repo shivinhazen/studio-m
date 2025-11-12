@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, type Transition } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -31,9 +31,13 @@ export function ProjectCard({
     ? undefined
     : {
         scale: 1.01,
-        transition: { duration: 0.25, ease: [0.33, 1, 0.68, 1] },
+        transition: { duration: 0.25, ease: [0.33, 1, 0.68, 1] as const },
       };
-  const cardTransition = { duration: 0.45, ease: [0.16, 1, 0.3, 1], delay };
+  const cardTransition: Transition = {
+    duration: 0.45,
+    ease: [0.16, 1, 0.3, 1] as const,
+    delay,
+  };
 
   const content = (
     <motion.article

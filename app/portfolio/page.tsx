@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform, type Variants } from "framer-motion";
 
 import { SectionTitle } from "@/components/section-title";
 import { ProjectCard } from "@/components/card-projeto";
@@ -84,10 +84,17 @@ export default function PortfolioPage() {
     [0, 1],
     shouldReduceMotion || isMobile ? [0, 0] : [-20, 20]
   );
-  const ctaCopyVariants = React.useMemo(() => (
+  const ctaCopyVariants = React.useMemo<Variants>(() => (
     shouldReduceMotion
       ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
-      : { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } } }
+      : {
+          hidden: { opacity: 0, y: 24 },
+          visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.6, ease: "easeOut" as const },
+          },
+        }
   ), [shouldReduceMotion]);
   return (
     <div className="container mx-auto space-y-24 px-6 py-24 text-neutral-800 md:space-y-32 md:px-12 md:py-32 dark:text-neutral-300">

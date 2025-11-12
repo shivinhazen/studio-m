@@ -27,7 +27,7 @@ export async function POST(request: Request) {
 
   if (contentType.includes("multipart/form-data")) {
     const formData = await request.formData();
-    const textFields: (keyof ContactPayload)[] = [
+    const textFields: Array<Exclude<keyof ContactPayload, "referenceFile">> = [
       "name",
       "email",
       "phone",
