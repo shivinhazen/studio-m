@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion } from "framer-motion";
+import { motion } from "@/lib/motion";
 
 import { SectionTitle } from "@/components/section-title";
 import {
@@ -57,7 +57,7 @@ export function ProcessSection() {
           em cada entrega.
         </motion.p>
       </motion.div>
-      <motion.div variants={stepsVariants} className="mt-12 grid gap-6 md:grid-cols-4">
+      <motion.div variants={stepsVariants} className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {PROCESS_STEPS.map((step, index) => (
           <motion.article
             key={step.title}
@@ -71,6 +71,7 @@ export function ProcessSection() {
                   }
             }
             className="rounded-3xl border border-border/60 bg-card/80 p-6 backdrop-blur transition-transform duration-300 hover:border-primary/50 hover:shadow-[0_20px_42px_-30px_rgba(15,23,42,0.28)] dark:border-white/12 dark:hover:border-white/20 dark:hover:shadow-[0_24px_48px_-30px_rgba(255,255,255,0.24)]"
+            tabIndex={-1}
           >
             <div className="heading-xs flex items-center gap-3 text-primary">
               <span className="flex h-8 w-8 items-center justify-center rounded-full border border-primary/40 bg-primary/10">

@@ -1,4 +1,13 @@
-﻿import { SectionTitle } from "@/components/section-title";
+﻿import type { Metadata } from "next";
+import { SectionTitle } from "@/components/section-title";
+
+export const metadata: Metadata = {
+  title: "Termos de Uso | Studio M",
+  description: "Condições de uso do site e dos serviços do Studio M — Soluções Visuais.",
+  alternates: {
+    canonical: "https://studio-m-pearl.vercel.app/termos-de-uso",
+  },
+};
 
 const clauses = [
   {

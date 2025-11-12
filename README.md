@@ -78,8 +78,25 @@ CONTACT_EMAIL=contato@studiom.design
 | `npm run build` | Build otimizado para produção                       |
 | `npm start`     | Servir o build localmente                           |
 | `npm run lint`  | Verificações de lint com ESLint + regras do Next.js |
+| `npm run lint:deps` | Audita dependências órfãs usando `depcheck` customizado |
+| `npm run optimize:images` | Converte mockups para WebP otimizados (usa `sharp`) |
+| `npm run qa:axe` | Varredura de acessibilidade com `@axe-core/cli` no deploy da Vercel |
+| `npm run qa:lhci` | Lighthouse CI (produção) com asserts mínimas        |
+| `npm run qa:full` | Pipeline completa: lint + deps + Axe + Lighthouse   |
 
 > Na Vercel, basta conectar o repositório e replicar as variáveis acima no painel. O build padrão (`npm run build`) já entrega a versão final.
+
+---
+
+## 🧪 Automação de QA
+
+- `npm run qa:axe` — roda o `@axe-core/cli` contra `https://studio-m-pearl.vercel.app` validando WCAG 2.1 A/AA.
+- `npm run qa:lhci` — executa o Lighthouse CI (config em `lighthouserc.json`) para Home, Portfólio e Contato.
+- `npm run qa:full` — pipeline completa: `lint`, `lint:deps`, Axe e Lighthouse.
+- `npm run lint:deps` — garante que não há dependências órfãs; falha somente se algo fora da allowlist é detectado.
+- `npm run optimize:images` — converte os mockups de `/public/assets/portfolio/mockups` para WebP (usa `sharp`).
+
+> Sugestão: agendar `npm run qa:full` no CI antes de liberar um deploy final.
 
 ---
 
@@ -108,6 +125,46 @@ CONTACT_EMAIL=contato@studiom.design
 - [ ] Verificar animações com `prefers-reduced-motion` ativado.
 - [ ] Conferir links para WhatsApp, e-mail e páginas legais.
 - [ ] Rodar `npm run lint` e `npm run build` antes de cada deploy.
+
+---
+
+## ✅ To-do técnico
+
+### UI / Layout
+- [x] Ajustar `max-w-6xl` para `max-w-7xl` em rotas desktop-first (ex.: `/`, `/portfolio`) mantendo responsividade.
+- [x] Manter o grid da seção “Processo” em `md:grid-cols-2` até `lg` para evitar cards estreitos.
+- [x] Adicionar foco visível aos links da navegação desktop/mobile.
+- [x] Incluir um botão “Pular para conteúdo” visível ao foco para melhorar a navegação por teclado.
+
+### Performance
+- [x] Remover `'use client'` da página raiz e manter apenas componentes animados como client components.
+- [x] Centralizar Framer Motion via `LazyMotion` + `domAnimation` para reduzir bundles duplicados.
+- [x] Otimizar mockups de `/portfolio` (WebP/AVIF + `blurDataURL` e `priority` apenas no topo).
+- [x] Aplicar lazy loading às seções abaixo da dobra (Projects, Process, Final CTA).
+- [x] Usar `requestIdleCallback` em efeitos não críticos (parallax, scroll observers) para aliviar TBT.
+
+### Acessibilidade
+- [x] Corrigir feedback de status do formulário com `role="status"` e `aria-live="polite"`.
+- [x] Propagar `aria-invalid`/`aria-describedby` para campos com erro.
+- [x] Remover tabulação fantasma em cards não interativos garantindo ordem lógica de foco.
+
+### SEO e metadata
+- [x] Adicionar metadata completa por rota (`generateMetadata` com title/description/OG/Twitter/canonical/robots).
+- [x] Corrigir `metadataBase` para o domínio final.
+- [x] Implementar `app/robots.ts` e `app/sitemap.ts`.
+- [x] Incluir schema JSON-LD com dados do Studio M.
+
+### Core Web Vitals
+- [x] Otimizar o LCP (imagens pesadas do portfólio e hero).
+- [x] Reduzir TBT evitando hidratação desnecessária/animações simultâneas.
+- [x] Confirmar CLS zerado com placeholders/`blurDataURL`.
+
+### Extras recomendados
+- [x] Revisar `package.json` em busca de dependências não utilizadas ou desatualizadas.
+- [x] Limpar assets estáticos que não entram no build final.
+- [x] Consolidar hooks/utilitários de motion para reduzir duplicação.
+- [x] Configurar automações de QA (Lighthouse CI + Axe + lint de dependências).
+- [x] Documentar no README as novas otimizações e atualizar o checklist de QA conforme necessário.
 
 ---
 

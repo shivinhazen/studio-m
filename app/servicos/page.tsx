@@ -1,4 +1,14 @@
-﻿import { SectionTitle } from "@/components/section-title";
+﻿import type { Metadata } from "next";
+import { SectionTitle } from "@/components/section-title";
+
+export const metadata: Metadata = {
+  title: "Serviços | Studio M — Soluções Visuais",
+  description:
+    "Branding, experiências digitais e produção gráfica com direção criativa. Conheça as frentes de atuação do Studio M.",
+  alternates: {
+    canonical: "https://studio-m-pearl.vercel.app/servicos",
+  },
+};
 
 const services = [
   {

@@ -2,7 +2,8 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { motion, type MotionProps } from "framer-motion";
+import { type MotionProps } from "framer-motion";
+import { motion } from "@/lib/motion";
 import { ArrowUpRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion } from "framer-motion";
+import { motion } from "@/lib/motion";
 
 import { SectionTitle } from "@/components/section-title";
 import {
@@ -72,6 +72,7 @@ export function WhyChooseSection() {
                   }
             }
             className="rounded-3xl border border-border/60 bg-card/80 p-8 text-center backdrop-blur transition-transform duration-300 hover:border-primary/50 hover:shadow-[0_24px_45px_-30px_rgba(15,23,42,0.28)] dark:border-white/12 dark:hover:border-white/20 dark:hover:shadow-[0_24px_48px_-32px_rgba(255,255,255,0.26)]"
+            tabIndex={-1}
           >
             <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
               <Icon className="h-6 w-6" aria-hidden="true" />

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { motion } from "framer-motion";
+import { motion } from "@/lib/motion";
 
 import { SectionTitle } from "@/components/section-title";
 import { CardDescription, CardTitle } from "@/components/ui/card";
@@ -91,6 +91,7 @@ export function WhatWeDoSection() {
                     }
               }
               className="group flex h-full flex-col gap-5 rounded-2xl border border-neutral-200/70 bg-gradient-to-br from-white/95 via-white/80 to-white/60 p-8 shadow-md transition-all duration-300 hover:border-primary/50 hover:shadow-[0_22px_48px_-30px_rgba(15,23,42,0.35)] dark:border-white/10 dark:bg-gradient-to-br dark:from-neutral-900/70 dark:via-neutral-900/50 dark:to-black/85 dark:hover:border-white/20 dark:hover:shadow-[0_26px_50px_-32px_rgba(255,255,255,0.28)]"
+              tabIndex={-1}
             >
               <div className={`inline-flex h-12 w-12 items-center justify-center rounded-lg bg-neutral-900/5 ${accent} transition-all duration-300 dark:bg-white/10`}>
                 <Icon className="h-6 w-6" aria-hidden />

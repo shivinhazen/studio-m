@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "@/lib/motion";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -16,6 +16,7 @@ import { useParallaxHover } from "../hooks/use-parallax-hover";
 import { useStableReducedMotion } from "../hooks/use-stable-reduced-motion";
 import { HERO_EXPERTISE } from "./home-data";
 import { useIsCoarsePointer, useIsMobile } from "@/hooks/use-media-query";
+import { useIdleReady } from "../hooks/use-idle-ready";
 
 const EXPERTISE_ORDER = ["Produção Gráfica", "Identidade Visual", "Web Design Institucional"] as const;
 const expertiseWeight = (title: string) => {
@@ -31,6 +32,7 @@ export function Hero() {
   const shouldReduceMotion = useStableReducedMotion();
   const isMobile = useIsMobile();
   const isCoarsePointer = useIsCoarsePointer();
+  const idleReady = useIdleReady();
 
   const heroSectionVariants = React.useMemo(
     () =>
@@ -94,7 +96,7 @@ export function Hero() {
   const heroParallax = useParallaxHover({
     maxAngle: 4,
     perspective: 1100,
-    disabled: shouldReduceMotion || isMobile || isCoarsePointer,
+    disabled: shouldReduceMotion || isMobile || isCoarsePointer || !idleReady,
     ref: heroCardRef,
   });
   const heroCardHover = heroParallax.isEnabled

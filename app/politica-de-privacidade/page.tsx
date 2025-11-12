@@ -1,4 +1,14 @@
-﻿import { SectionTitle } from "@/components/section-title";
+﻿import type { Metadata } from "next";
+import { SectionTitle } from "@/components/section-title";
+
+export const metadata: Metadata = {
+  title: "Política de Privacidade | Studio M",
+  description:
+    "Saiba como o Studio M coleta, utiliza e protege seus dados pessoais em conformidade com a LGPD.",
+  alternates: {
+    canonical: "https://studio-m-pearl.vercel.app/politica-de-privacidade",
+  },
+};
 
 const sections = [
   {

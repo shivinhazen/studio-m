@@ -30,8 +30,8 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 w-full backdrop-blur supports-[backdrop-filter]:bg-background/70 border-b border-border/60">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
+    <header className="sticky top-0 z-40 w-full border-b border-border/60 backdrop-blur supports-[backdrop-filter]:bg-background/70">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4">
         <Link
           href="/"
           className="group flex h-full items-center gap-3"
@@ -57,7 +57,7 @@ export function Header() {
                 href={r.href}
                 aria-current={isActive ? "page" : undefined}
                 className={cn(
-                  "rounded-md px-3 py-2 text-sm transition-colors",
+                  "rounded-md px-3 py-2 text-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary/60",
                   isActive
                     ? "bg-accent/60 text-foreground"
                     : "hover:bg-accent/70 hover:text-foreground/90"
@@ -105,7 +105,7 @@ export function Header() {
                   aria-current={isActive ? "page" : undefined}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    "rounded-md px-2 py-2 text-sm transition-colors",
+                    "rounded-md px-2 py-2 text-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary/60",
                     isActive
                       ? "bg-accent/50 text-foreground"
                       : "hover:bg-accent/70"

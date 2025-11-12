@@ -1,18 +1,21 @@
 "use client";
 
 import * as React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useScroll, useTransform } from "framer-motion";
+import { motion } from "@/lib/motion";
 
 import { CallToAction } from "@/components/call-to-action";
 import { useStableReducedMotion } from "../hooks/use-stable-reduced-motion";
 import { useParallaxHover } from "../hooks/use-parallax-hover";
 import { useIsCoarsePointer, useIsMobile } from "@/hooks/use-media-query";
 import { createContainerVariants, createFadeUpVariants, EASE_IN_OUT } from "./motion-utils";
+import { useIdleReady } from "../hooks/use-idle-ready";
 
 export function FinalCTASection() {
   const shouldReduceMotion = useStableReducedMotion();
   const isMobile = useIsMobile();
   const isCoarsePointer = useIsCoarsePointer();
+  const idleReady = useIdleReady();
 
   const sectionRef = React.useRef<HTMLDivElement | null>(null);
   const ctaCardRef = React.useRef<HTMLDivElement | null>(null);
@@ -52,7 +55,7 @@ export function FinalCTASection() {
   const ctaParallax = useParallaxHover({
     maxAngle: 3.5,
     perspective: 1200,
-    disabled: shouldReduceMotion || isMobile || isCoarsePointer,
+    disabled: shouldReduceMotion || isMobile || isCoarsePointer || !idleReady,
     spring: tiltSpring,
     ref: ctaCardRef,
   });
@@ -67,7 +70,7 @@ export function FinalCTASection() {
       className="relative overflow-hidden rounded-3xl border border-neutral-200 bg-[#FAFAFA] px-8 py-28 text-neutral-900 shadow-[0_24px_68px_-48px_rgba(15,23,42,0.45)] transition-transform duration-500 sm:px-12 md:px-20 md:py-36 dark:border-white/12 dark:bg-neutral-950 dark:text-neutral-100"
     >
       <motion.div
-        style={{ y: parallaxY }}
+        style={{ y: idleReady ? parallaxY : 0 }}
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(0,188,212,0.15),transparent_55%),radial-gradient(circle_at_bottom_right,rgba(233,30,99,0.15),transparent_60%)] opacity-80 blur-[110px] dark:bg-[radial-gradient(circle_at_top_left,rgba(0,188,212,0.25),transparent_55%),radial-gradient(circle_at_bottom_right,rgba(233,30,99,0.25),transparent_60%)] dark:opacity-60"
         aria-hidden
       />
