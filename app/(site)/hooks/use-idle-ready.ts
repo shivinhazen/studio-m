@@ -2,24 +2,6 @@
 
 import * as React from "react";
 
-declare global {
-  interface IdleDeadline {
-    readonly didTimeout: boolean;
-    timeRemaining(): number;
-  }
-
-  type IdleRequestCallback = (deadline: IdleDeadline) => void;
-
-  interface IdleRequestOptions {
-    timeout?: number;
-  }
-
-  interface Window {
-    requestIdleCallback?(callback: IdleRequestCallback, options?: IdleRequestOptions): number;
-    cancelIdleCallback?(handle: number): void;
-  }
-}
-
 /**
  * Returns true once the browser main thread is idle enough to run non-critical effects.
  * Falls back to a timeout when `requestIdleCallback` is unavailable.
