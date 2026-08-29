@@ -99,7 +99,7 @@ export default function ContactContent() {
       setForm((prev) => ({ ...prev, referenceFile: null }));
       setErrors((prev) => ({
         ...prev,
-        referenceFile: "O arquivo deve ter no máximo 20 MB.",
+        referenceFile: "O arquivo deve ter no máximo 15 MB.",
       }));
       event.target.value = "";
       return;
@@ -300,12 +300,12 @@ export default function ContactContent() {
               type="button"
               onClick={() => fileInputRef.current?.click()}
               className="peer absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-full text-[#999] transition hover:text-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 dark:text-neutral-400 dark:hover:text-neutral-100"
-              aria-label="Anexar referência visual (opcional) — até 20 MB"
+              aria-label="Anexar referência visual (opcional) — até 15 MB"
             >
               <Paperclip className="h-5 w-5" />
             </button>
             <div className="pointer-events-none absolute bottom-14 right-0 z-10 w-60 rounded-lg border border-neutral-200 bg-white px-3 py-2 text-xs font-medium text-neutral-600 opacity-0 shadow-lg transition-opacity duration-200 peer-hover:opacity-100 peer-focus-visible:opacity-100 dark:border-white/10 dark:bg-neutral-900 dark:text-neutral-100">
-              Anexar referência visual (opcional) — até 20 MB
+              Anexar referência visual (opcional) — até 15 MB
             </div>
             {form.referenceFile ? (
               <div className="mt-2 flex items-center gap-2 rounded-lg border border-dashed border-neutral-300 bg-white/80 px-3 py-2 text-xs text-muted-foreground dark:border-white/20 dark:bg-white/5">
